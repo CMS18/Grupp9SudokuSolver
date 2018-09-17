@@ -81,13 +81,15 @@ namespace Grupp9
             int row = 0;
             int col = 0;
 
-            foreach (int cell in gameNumbersArray)
+            for (col = 0; col < gameNumbersArray.GetLength(1); col++)
             {
+                int cell = gameNumbersArray[row, col];
+
                 if (cell == 0)
                 {
                     List<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-                    for (col = 0; col < gameNumbersArray.GetLength(0); col++)
+                    for (col = 0; col < gameNumbersArray.GetLength(1); col++)
                     {
                         
 
@@ -101,9 +103,6 @@ namespace Grupp9
 
                             }
                         }
-
-                        
-
                         
                     }
 
@@ -111,8 +110,6 @@ namespace Grupp9
 
                     for (row = 0; row < gameNumbersArray.GetLength(0); row++)
                     {
-
-                          
 
                           if (gameNumbersArray[row,col] != 0)
                           {
@@ -125,14 +122,15 @@ namespace Grupp9
                             }
 
                     }
+
+                    if (col == 8)
+                    {
+                        row++;
+                        col = 0;
+                    }
+
                 }
-                /*
-                col++;
-                if (col == 9)
-                {
-                    col = 0;
-                    row++;
-                }*/
+
             }
         }
 
