@@ -85,35 +85,51 @@ namespace Grupp9
             {
                 if (cell == 0)
                 {
-                    
+                    List<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
                     for (col = 0; col < gameNumbersArray.GetLength(0); col++)
                     {
-
-                        List<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                        
 
                         if (gameNumbersArray[row,col] != 0)
                         {
                             possibleNumbers.Remove(gameNumbersArray[row,col]);
-                                                                               
-                        }
-                        for (row = 0; row < gameNumbersArray.GetLength(0); row++)
-                        {
-                            if (gameNumbersArray[row,col] != 0)
+
+                            if (col == 8)
                             {
+                                col = 0;
+
+                            }
+                        }
+
+                        
+
+                        
+                    }
+                    for (row = 0; row < gameNumbersArray.GetLength(0); row++)
+                    {
+
+                          
+
+                          if (gameNumbersArray[row,col] != 0)
+                          {
                                 possibleNumbers.Remove(gameNumbersArray[row, col]);
+                          }
+
+                            if (row == 8)
+                            {
+                                break;
                             }
 
-                        }
                     }
                 }
-
+                /*
                 col++;
                 if (col == 9)
                 {
                     col = 0;
                     row++;
-                }
+                }*/
             }
         }
 
