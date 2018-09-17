@@ -97,7 +97,7 @@ namespace Grupp9
 
                             if (col == 8)
                             {
-                                col = 0;
+                                break;
 
                             }
                         }
@@ -106,6 +106,9 @@ namespace Grupp9
 
                         
                     }
+
+                    col = 0;
+
                     for (row = 0; row < gameNumbersArray.GetLength(0); row++)
                     {
 
