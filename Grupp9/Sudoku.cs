@@ -76,70 +76,87 @@ namespace Grupp9
             Console.WriteLine("+");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        public void StringGameNumbersToCharArray()
+        public void Solve()
         {
-            string gameNumbers = "003020600\n900305001\n001806400\n008102900\n700000008\n006708200\n002609500\n800203009\n005010300";
-            char[,] gameNumbersChar = new char[9, 9];
-
-            string[] lines = gameNumbers.Split(new[] { '\n' });
-
             int row = 0;
-            foreach (string line in lines)
-            {
-                int col = 0;
-                foreach (char character in line)
-                {
-                    gameNumbersChar[row, col] = character;
-                    col++;
-                }
-                row++;
-            }
+            int col = 0;
 
+            foreach (int cell in gameNumbersArray)
+            {
+                if (cell == 0)
+                {
+                    
+
+                    for (col = 0; col < gameNumbersArray.GetLength(0); col++)
+                    {
+
+                        List<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+                        if (gameNumbersArray[row,col] != 0)
+                        {
+                            possibleNumbers.Remove(gameNumbersArray[row,col]);
+                                                                               
+                        }
+                        for (row = 0; row < gameNumbersArray.GetLength(0); row++)
+                        {
+                            if (gameNumbersArray[row,col] != 0)
+                            {
+                                possibleNumbers.Remove(gameNumbersArray[row, col]);
+                            }
+
+                        }
+                    }
+                }
+
+                col++;
+                if (col == 9)
+                {
+                    col = 0;
+                    row++;
+                }
+            }
         }
 
-        */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
 
 
