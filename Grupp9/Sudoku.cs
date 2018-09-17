@@ -57,18 +57,19 @@ namespace Grupp9
                 }
                 Console.WriteLine("|");
 
-                if (row % 3 == 0)
+
+                if (row % 3 == 2)
                 {
                     PrintBorder();
                 }
             }
-           PrintBorder();
+           
         }
 
         public void PrintBorder()
         {
             Console.Write("+");
-            for (int col = 0; col < gameNumbersArray.GetLength(1); col++)
+            for (int col = 0; col-1 < gameNumbersArray.GetLength(1)+1; col++)
             {
                 Console.Write("-");
             }
