@@ -78,60 +78,34 @@ namespace Grupp9
 
         public void Solve()
         {
-            int row = 0;
-            int col = 0;
-
-            for (col = 0; col < gameNumbersArray.GetLength(1); col++)
+            do
             {
-                int cell = gameNumbersArray[row, col];
 
-                if (cell == 0)
+
+
+
+
+
+
+
+
+
+            } while (WhileNoEmptyCell());
+        }
+
+        private bool WhileNoEmptyCell()
+        {
+            for (int row = 0; row < gameNumbersArray.GetLength(0); row++)
+            {
+                for (int col = 0; col < gameNumbersArray.GetLength(1); col++)
                 {
-                    List<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-                    for (col = 0; col < gameNumbersArray.GetLength(1); col++)
+                    if (gameNumbersArray[row, col] == 0)
                     {
-                        
-
-                        if (gameNumbersArray[row,col] != 0)
-                        {
-                            possibleNumbers.Remove(gameNumbersArray[row,col]);
-
-                            if (col == 8)
-                            {
-                                break;
-
-                            }
-                        }
-                        
+                        return true;
                     }
-
-                    col = 0;
-
-                    for (row = 0; row < gameNumbersArray.GetLength(0); row++)
-                    {
-
-                          if (gameNumbersArray[row,col] != 0)
-                          {
-                                possibleNumbers.Remove(gameNumbersArray[row, col]);
-                          }
-
-                            if (row == 8)
-                            {
-                                break;
-                            }
-
-                    }
-
-                    if (col == 8)
-                    {
-                        row++;
-                        col = 0;
-                    }
-
                 }
-
             }
+            return false;
         }
 
 
