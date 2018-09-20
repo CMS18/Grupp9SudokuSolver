@@ -8,6 +8,14 @@ namespace AdventureGameTEst.Classes
 {
     class Rooms
     {
+        public string Description { get; set; }
+        public List<Inventory> RoomInventory { get; set; }
+        public List<Rooms> exitList { get; set; }
+
+        //ShowDescription()
+
+        //Inspect ()
+
         public string entranceDescription = "";
         public string southEastRoomDescription = "";
         public string southWestRoomDescription = "";

@@ -10,4 +10,8 @@ namespace AdventureGameTEst.Classes
     {
 
     }
+
+    //Use
+
+    //Inspect
 }
