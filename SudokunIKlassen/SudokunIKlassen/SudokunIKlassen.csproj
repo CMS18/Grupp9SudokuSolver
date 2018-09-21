@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F5ED0267-B5BB-43C8-AD55-0FF82CE94F4C}</ProjectGuid>
+    <ProjectGuid>{9AC53A2C-288F-44BD-96FC-248FE09FB85A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AdventureGameTEst</RootNamespace>
-    <AssemblyName>AdventureGameTEst</AssemblyName>
+    <RootNamespace>SudokunIKlassen</RootNamespace>
+    <AssemblyName>SudokunIKlassen</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,15 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Base.cs" />
-    <Compile Include="Classes\Game.cs" />
-    <Compile Include="Classes\GameBuilder.cs" />
-    <Compile Include="Classes\Inventory.cs" />
-    <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Rooms.cs" />
-    <Compile Include="Extension Methods\AddToList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sudoku.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
