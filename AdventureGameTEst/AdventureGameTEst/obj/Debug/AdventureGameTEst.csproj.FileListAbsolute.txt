@@ -5,3 +5,10 @@ C:\Users\samie\source\repos\AdventureGameTEst\AdventureGameTEst\obj\Debug\Advent
 C:\Users\samie\source\repos\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.csproj.CoreCompileInputs.cache
 C:\Users\samie\source\repos\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.exe
 C:\Users\samie\source\repos\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.pdb
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\bin\Debug\AdventureGameTEst.exe.config
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\bin\Debug\AdventureGameTEst.exe
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\bin\Debug\AdventureGameTEst.pdb
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.csprojAssemblyReference.cache
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.csproj.CoreCompileInputs.cache
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.exe
+C:\Users\samie\Source\Repos\Grupp9SudokuSolver\AdventureGameTEst\AdventureGameTEst\obj\Debug\AdventureGameTEst.pdb

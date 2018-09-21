@@ -18,11 +18,13 @@ namespace AdventureGameTEst.Classes
         { 
         Console.Write("So what is your name? ");
         string playerName = Console.ReadLine();
-        Console.WriteLine("Welcome " + playerName + " You will explore the dungeons of Kallhäll, do your best to escape or you will face death!");
+        Console.WriteLine("Welcome " + playerName + "Welcome " + playerName + " you have been wrongfully sentenced to death. " +
+                          "Your execution is in 24 hours and you've been sent to this maximum security prison in the meantime. " +
+                          "Before your sentencing, you heard a rumor that there was a secret door that lead to an escape hatch. " +
+                          "Find the door and escape before your execution date!");
         Console.Read();
         }
 
-        
     }
 
 
