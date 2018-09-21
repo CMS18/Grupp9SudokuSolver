@@ -205,24 +205,16 @@ namespace Grupp9
                         if (board[row, col] == 0)
                         {
                             var numbers = FindPossibleNumbers(row, col);
-                            if (numbers.Length == 0)
-                            {
-                                sudoku = false;
-                            }
-
                             if (numbers.Length == 1)
                             {
                                 board[row, col] = numbers[0];
                             }
-                            else 
-                            {
-                                break;
-                            }
+                            
                         }
                     }
                 }
                 tries++;
-            } while (EmptyCell());
+            } while (tries < 150);
             
             if (TryNumbers())
             {
@@ -245,17 +237,18 @@ namespace Grupp9
                             board[row, col] = numbers[i];
                             //Console.SetCursorPosition(0, 0);
                             //PrintBoard();
+                            if (TryNumbers())
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                board[row, col] = 0;
+                                //Console.SetCursorPosition(0, 0);
+                                //PrintBoard();
+                            }
                         }
-                        if (TryNumbers())
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            board[row, col] = 0;
-                            //Console.SetCursorPosition(0, 0);
-                            //PrintBoard();
-                        }
+                        
                         return false;
                     }
                 }
