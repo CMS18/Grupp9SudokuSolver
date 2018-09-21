@@ -12,8 +12,7 @@ namespace AdventureGameTEst
         static void Main()
         {
             Console.WriteLine("Welcome to the Haglund Prison Escape!");
-
-            Player.NameCharacter();
+            Game game = new Game();
 
         }
     }
