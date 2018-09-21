@@ -10,15 +10,15 @@ namespace AdventureGameTEst.Classes
 {
     public class Rooms
     {
-        public int Id { get; set; }
+        public int Position { get; set; }
         public string Description { get; set; }
         public bool WinningRoom { get; set; }
         public List<Inventory> RoomInventory { get; set; }
         public List<Rooms> exitList { get; set; }
 
-        public Rooms(int roomId, string roomDescription, bool winningRoom)
+        public Rooms(int currentPosition, string roomDescription, bool winningRoom)
         {
-            Id = roomId;
+            Position = currentPosition;
             Description = roomDescription;
             WinningRoom = winningRoom;
         }
