@@ -26,7 +26,7 @@ namespace Grupp9
                 //     Skriva in siffra i cell.
                 SetCellValue(row, col, number);
             }
-            
+
         }
 
         private int GetCellValue(int row, int col)
@@ -64,20 +64,20 @@ namespace Grupp9
                     PrintBorder();
                 }
             }
-           
+
         }
 
         public void PrintBorder()
         {
             Console.Write("+");
-            for (int col = 0; col-1 < board.GetLength(1)+1; col++)
+            for (int col = 0; col - 1 < board.GetLength(1) + 1; col++)
             {
                 Console.Write("-");
             }
             Console.WriteLine("+");
         }
 
-        
+
 
         private int[] GetNumbersInRow(int row)
         {
@@ -94,7 +94,7 @@ namespace Grupp9
             }
 
             return result;
-            
+
         }
 
         private int[] GetNumbersInColumn(int col)
@@ -111,7 +111,7 @@ namespace Grupp9
             }
 
             return result;
-            
+
         }
 
 
@@ -174,7 +174,7 @@ namespace Grupp9
 
         }
 
-        private bool WhileNoEmptyCell()
+        private bool EmptyCell()
         {
             for (int row = 0; row < board.GetLength(0); row++)
             {
@@ -189,11 +189,13 @@ namespace Grupp9
             return false;
         }
 
+
         public void Solve()
         {
             Console.WriteLine("Tryck enter för att lösa. ");
             Console.ReadLine();
-
+            int tries = 0;
+            bool sudoku = true;
             do
             {
                 for (int row = 0; row < 9; row++)
@@ -202,28 +204,56 @@ namespace Grupp9
                     {
                         if (board[row, col] == 0)
                         {
-                            FindPossibleNumbers(row, col);
-
-                            if (FindPossibleNumbers(row, col).Length == 0)
+                            var numbers = FindPossibleNumbers(row, col);
+                            if (numbers.Length == 1)
                             {
-                                break;
+                                board[row, col] = numbers[0];
                             }
-                            else if (FindPossibleNumbers(row,col).Length == 1)
-                            {
-                                board[row, col] = FindPossibleNumbers(row, col)[0];
-                            }
-                            else
-                            {
-                                continue;
-                            }
+                            
                         }
                     }
                 }
-            } while (WhileNoEmptyCell());
-
-            PrintBoard();
+                tries++;
+            } while (tries < 150);
+            
+            if (TryNumbers())
+            {
+                PrintBoard();
+            }
+            //PrintBoard();
         }
 
+        private bool TryNumbers()
+        {
+            for (int row = 0; row < 9; row++)
+            {
+                for (int col = 0; col < 9; col++)
+                {
+                    if (board[row, col] == 0)
+                    {
+                        var numbers = FindPossibleNumbers(row, col); 
+                        for (int i = 0; i < numbers.Length; i++)
+                        {
+                            board[row, col] = numbers[i];
+                            //Console.SetCursorPosition(0, 0);
+                            //PrintBoard();
+                            if (TryNumbers())
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                board[row, col] = 0;
+                                //Console.SetCursorPosition(0, 0);
+                                //PrintBoard();
+                            }
+                        }
+                        
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
- 
 }
