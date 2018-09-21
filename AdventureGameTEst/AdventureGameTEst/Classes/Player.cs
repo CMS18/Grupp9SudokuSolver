@@ -15,7 +15,17 @@ namespace AdventureGameTEst.Classes
         public List<Inventory> inventoryList { get; set; }
 
         public Rooms currentPosition { get; set; }
+
+        public static void NameCharacter()
+        { 
+        Console.Write("So what is your name? ");
+        string playerName = Console.ReadLine();
+        Console.WriteLine("Welcome " + playerName + " You will explore the dungeons of Kallhäll, do your best to escape or you will face death!");
+        Console.Read();
+        }
     }
+
+
 
     //PickUpItem()
 
@@ -24,6 +34,8 @@ namespace AdventureGameTEst.Classes
     //UseItem()
 
     //Move()
+
+
 
     //DropItem()
 
