@@ -9,18 +9,18 @@ namespace AdventureGameTEst.Classes
 {
     public class Game : Base
     {
-        public Player player { get; set; }
+        public Player Player { get; set; }
 
         public List<Rooms> RoomList { get; set; }
 
-        public bool alive { get; set; }
+        public bool Alive { get; set; }
 
-        public bool victory { get; set; }
+        public bool Victory { get; set; }
 
         public Game()
         {
             GameBuilder gameBuilder = new GameBuilder();
-            player = gameBuilder.Player;
+            Player = gameBuilder.Player;
         }
 
     }
