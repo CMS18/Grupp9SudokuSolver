@@ -19,7 +19,7 @@ namespace AdventureGameTEst.Classes
         {
             Console.Write("So what is your name? ");
             string playerName = Console.ReadLine();
-            Console.WriteLine("Welcome " + playerName + " you have been wrongfully sentenced to death. " +
+            Console.WriteLine("Welcome " + playerName + ", you have been wrongfully sentenced to death. " +
                               "Your execution is in 24 hours and you've been sent\n" + "to this maximum security prison in the meantime. " +
                               "Before your sentencing, you heard a rumor that there was a \n" + "secret door that lead to an escape hatch. " +
                               "Find the door and escape before your execution date!\n");

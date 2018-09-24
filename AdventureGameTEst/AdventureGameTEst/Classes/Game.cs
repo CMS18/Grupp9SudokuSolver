@@ -20,6 +20,7 @@ namespace AdventureGameTEst.Classes
         public Game()
         {
             GameBuilder gameBuilder = new GameBuilder();
+            gameBuilder.NameCharacter();
             Player = gameBuilder.Player;
         }
 
