@@ -7,11 +7,11 @@ using AdventureGameTEst.Classes;
 
 namespace AdventureGameTEst.Classes
 {
-    public class Game : Base
+    public class Game 
     {
         public Player Player { get; set; }
 
-        public List<Rooms> RoomList { get; set; }
+        public List<Room> RoomList { get; set; }
 
         public bool Alive { get; set; }
 
@@ -19,10 +19,19 @@ namespace AdventureGameTEst.Classes
 
         public Game()
         {
+            Game.Start();
             GameBuilder gameBuilder = new GameBuilder();
             gameBuilder.NameCharacter();
             Player = gameBuilder.Player;
+            
         }
+
+        public static void Start()
+        {
+            Console.WriteLine("Welcome to the Haglund Prison Escape!");
+        }
+
+        
 
     }
 

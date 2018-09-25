@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Base.cs" />
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\GameBuilder.cs" />
     <Compile Include="Classes\Inventory.cs" />
     <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Rooms.cs" />
+    <Compile Include="Classes\Room.cs" />
+    <Compile Include="Exit.cs" />
     <Compile Include="Extension Methods\AddToList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

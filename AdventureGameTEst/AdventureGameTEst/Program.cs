@@ -11,10 +11,8 @@ namespace AdventureGameTEst
     {
         static void Main()
         {
-            Console.WriteLine("Welcome to the Haglund Prison Escape!");
             Game game = new Game();
             
-
             Console.ReadLine();
 
         }

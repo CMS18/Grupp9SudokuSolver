@@ -11,7 +11,7 @@ namespace AdventureGameTEst.Classes
     class GameBuilder
     {
         public static List<Inventory> InventoryList = new List<Inventory>();
-        public static List<Rooms> RoomList = new List<Rooms>();
+        public static List<Room> RoomList = new List<Room>();
 
         public Player Player { get; private set; }
 
