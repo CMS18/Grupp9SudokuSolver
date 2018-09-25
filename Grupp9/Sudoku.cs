@@ -220,7 +220,10 @@ namespace Grupp9
             {
                 PrintBoard();
             }
-            //PrintBoard();
+            if (!TryNumbers() && tries == 150)
+            {
+                Console.WriteLine("Spelet saknar lösning.");
+            }
         }
 
         private bool TryNumbers()
