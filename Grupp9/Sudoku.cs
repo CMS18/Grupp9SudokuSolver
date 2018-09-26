@@ -223,6 +223,7 @@ namespace Grupp9
             if (!TryNumbers() && tries == 150)
             {
                 Console.WriteLine("Spelet saknar lösning.");
+                PrintBoard();
             }
         }
 
