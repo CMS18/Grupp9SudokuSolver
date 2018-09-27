@@ -19,7 +19,7 @@ namespace AdventureGameTEst.Classes
 
         Inventory bucket;
         //Inventory bigPlant;
-        Inventory smallPlant;
+        Inventory plant;
         Inventory copperKey;
         Inventory broomStick;
         //Inventory painting;
@@ -48,18 +48,18 @@ namespace AdventureGameTEst.Classes
         public void StartupItems()
         {
 
-            bucket = new Inventory("0", "Bucket", "You found a bucket. It reeks but maybe there's a use for it?", false);
+            bucket = new Inventory("0", "BUCKET", "You found a bucket. It reeks but maybe there's a use for it?", false);
             bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
             //painting = new Inventory("1", "Painting", "A painting of my great idol, Adobe Gitler", false);
             //bigPlant = new Inventory("2", "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false);
-            smallPlant = new Inventory("3", "Small Plant", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
-            smallPlant.AddDescriptionToRoom = "There is a small plant.";
-            copperKey = new Inventory("id1", "Copper Key", "A copper key. I wonder where it goes.", true);
+            plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
+            plant.AddDescriptionToRoom = "There is a small plant.";
+            copperKey = new Inventory("id1", "COPPERKEY", "A copper key. I wonder where it goes.", true);
             copperKey.AddDescriptionToRoom = "There is a key";
-            broomStick = new Inventory ("5", "Broomstick", "You found a broomstick, might it be useful?", true);
+            broomStick = new Inventory ("5", "BROOMSTICK", "You found a broomstick, might it be useful?", true);
             broomStick.AddDescriptionToRoom = "There is a broomstick leaning to the wall.";
-            broomStick.MatchID = smallPlant.Id;
-            smallPlant.MatchID = broomStick.Id;
+            broomStick.MatchID = plant.Id;
+            plant.MatchID = broomStick.Id;
 
             
         }
@@ -73,6 +73,7 @@ namespace AdventureGameTEst.Classes
             "\nThere are two possible exits - one to the east and one to the west. Press east or west if you want to move east or west.");
             entrance.AddItem(bucket);
             entrance.AddItem(broomStick);
+
 
             //Rum 2, inga items. Exits: N och E
             Room southWestRoom = new Room();
@@ -91,7 +92,7 @@ namespace AdventureGameTEst.Classes
             "you consider how bland and dark the rest of the \nprison is. You can exit the room to the " +
             "west. Type west to proceed.");
             //eastRoom.AddItem(bigPlant);
-            eastRoom.AddItem(smallPlant);
+            eastRoom.AddItem(plant);
             eastRoom.AddItem(copperKey);
 
             // Rum 8, Vinnande rummet! 
@@ -239,12 +240,12 @@ namespace AdventureGameTEst.Classes
             {
                 Console.WriteLine("What do you want to inspect?");
                 Console.Write("");
-                input = Console.ReadLine().Split(' ');
+                input = Console.ReadLine().ToUpper().Split(' ');
             }
 
             foreach (Inventory inventory in playerInventory)
             {
-                if (input.Contains(inventory.Name))
+                if (input.Contains(inventory.Name.ToUpper()))
                 {
                     Console.WriteLine(inventory.Description);
                     return; 

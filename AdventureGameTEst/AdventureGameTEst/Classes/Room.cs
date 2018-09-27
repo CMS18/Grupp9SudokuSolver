@@ -54,7 +54,7 @@ namespace AdventureGameTEst.Classes
 
         public void RemoveItem(Inventory item)
         {
-            throw new NotImplementedException();
+            roomInventory.Remove(item);
         }
 
         public List<Exit> GetExits()
