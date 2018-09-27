@@ -11,20 +11,44 @@ namespace AdventureGameTEst.Classes
     public class Room
     {
         public string Name { get; set; }
-        public int Position { get; set; }
         public string Description { get; set; }
-        public bool WinningRoom { get; set; }
-        public List<Inventory> RoomInventory { get; set; }
-        public List<Room> exitList { get; set; }
+        public bool visited = false;
+        List<Inventory> roomInventory;
+        List<Exit> exitList;
 
-        public Room(int currentPosition, string roomDescription, bool winningRoom)
+        private StringBuilder roomDescriptionWithItems = new StringBuilder();
+
+        public Room()
         {
-            Position = currentPosition;
-            Description = roomDescription;
-            WinningRoom = winningRoom;
+            Name = "";
+            Description = "";
+            roomInventory = new List<Inventory>();
+            exitList = new List<Exit>();
+
         }
 
-       
+        public void AddItem(Inventory item)
+        {
+            roomInventory.Add(item);
+        }
+
+        public void AddDescription(string description)
+        {
+            Description = description;
+            roomDescriptionWithItems.Append(Description);
+        }
+
+        public void AddName(string name)
+        {
+            Name = name;
+        }
+
+        public void AddExit(Exit exit)
+        {
+            exitList.Add(exit);
+        }
+
+
     }
 
 

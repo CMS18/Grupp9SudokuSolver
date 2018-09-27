@@ -8,10 +8,11 @@ using AdventureGameTEst.Extension_Methods;
 
 namespace AdventureGameTEst.Classes
 {
-    class GameBuilder
+    public class GameBuilder
     {
         public static List<Inventory> InventoryList = new List<Inventory>();
         public static List<Room> RoomList = new List<Room>();
+        //Room.RoomInventory = new List<Inventory>;
 
         public Player Player { get; private set; }
 
@@ -63,47 +64,56 @@ namespace AdventureGameTEst.Classes
 
         public static void StartupRooms()
         {
-            //exits: E och W, items: bucket.
-            Room entrance = new Room(0, "This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
-            "There are two possible exits - one to the east and one to the west. Press E or W if you want to move east or west.", false);
+            //Rum 0, exits: E och W, items: bucket.
+            Room entrance = new Room();
+            entrance.AddName("Entrance");
+            entrance.AddDescription("This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
+            "There are two possible exits - one to the east and one to the west. Press E or W if you want to move east or west.");
+            entrance.AddItem(bucket);
 
-            //painting, kan ej tas med. Exits: N och W.
+            //Rum 1, painting, kan ej tas med. Exits: N och W.
             //Room southEastRoom = new Room(1, "You are in the southeast room now. The walls are slightly dirtier... you think " +
             // "you can see some blood on one of the walls. Surprisingly, there's also a painting hanging " +
             // "suspiciously on the wall. You can exit the room to the west or to the north. Press N or W to proceed.", false);
 
-            //inga items. Exits: N och E
-            Room southWestRoom = new Room(2, "You are in the southwest room.It's rather stuffy in this room. I wonder why? Maybe " +
+            //Rum 2, inga items. Exits: N och E
+            Room southWestRoom = new Room();
+            southWestRoom.AddName("South West Room");
+            southWestRoom.AddDescription("You are in the southwest room.It's rather stuffy in this room. I wonder why? Maybe " +
             "due to a lack of windows in the prison? I guess there's a reason for not having windows " +
             "in a prison, though. The walls are dirty, except for the western wall, which seems " +
             "surprisingly clean? You can exit the room to the east or to the north. Press N or E " +
-            "to proceed.", false);
+            "to proceed.");
 
-            //Items: Big plant, kan ej tas med och Small plant. Exits: N och S.
-            Room eastRoom = new Room(3, "You are in the eastern room. There's d e f i n i t e l y blood on the eastern wall... that's " +
+            //Rum 3, Items: Big plant, kan ej tas med och Small plant. Exits: N och S.
+            Room eastRoom = new Room();
+            eastRoom.AddName("East room");
+            eastRoom.AddDescription("You are in the eastern room. There's d e f i n i t e l y blood on the eastern wall... that's " +
             "disturbing as hell. There is a plant in the corner of the room, which is weird when " +
             "you consider how bland and dark the rest of the prison is. You can exit the room to the " +
-            "north or to the south. Press N or S to proceed.", false);
+            "north or to the south. Press N or S to proceed.");
+            roomInventory.Add(bigPlant);
+            
 
-            //// Items: Couch, kan ej tas med. Exits: N och S
+            //// Rum 4, Items: Couch, kan ej tas med. Exits: N och S
             //Room westRoom = new Room(4, "You are in the western room. This room is slightly less stuffy. Strange? The walls are painted " +
             //"red. Maybe they are trying to cover up some kind of fight that happened? It seems like " +
             //"they have forgotten to paint the part behind the couch on the northern side of the room. " +
             //"You can exit the room to the north or to the south. Press N or S to proceed.", false);
 
-            // Items: Teeths, chair. Table (kan ej tas med). Exits: W och S.
+            // Rum 5, Items: Teeths, chair. Table (kan ej tas med). Exits: W och S.
             //Room northEastRoom = new Room(5, "You are in the northeastern room. There's a table in the middle of the room. " +
             //"The walls are really bloody here... the prison guards haven't even bothered to wash the blood " +
             //"off. You can exit the room to the " +
             //"west or to the south. Press W or S to proceed.", false);
 
-            // Items: 2 böcker. Tapestry, rug och bookshelf som inte kan tas med. Exits: W och E.
+            // Rum 6, Items: 2 böcker. Tapestry, rug och bookshelf som inte kan tas med. Exits: W och E.
             //Room northRoom = new Room(6, "This room is surprisingly clean, considering the state of the adjacent rooms. There's " +
             //"tapestry on the southern wall. It's slightly torn but what the hell is tapestry doing in " +
             //"a high-security prison? There's also a rug on the floor and a book shelf with plenty of " +
             //"books. You can exit the room to the west or to the east. Press W or E to proceed.", false);
 
-            // Items: Nyckel och kettlebells. Bench press och rug som inte kans tas med. Exits: S och E.
+            //Rum 7, Items: Nyckel och kettlebells. Bench press och rug som inte kans tas med. Exits: S och E.
             //Room northWestRoom = new Room(7, "Another room with bloody walls. What the hell are the prison guards doing " +
             //", do they want the prisoners to kill each other? I would have said yes, but " +
             //"the prison gets paid for each prisoner so maybe not. Seems like this room is meant " +
@@ -111,7 +121,7 @@ namespace AdventureGameTEst.Classes
             //"under the bench press for some reason? You can exit the room to the south or to the east. " +
             //"Press S or E to proceed.", false);
 
-            // Vinnande rummet! 
+            // Rum 8, Vinnande rummet! 
             //Room secretRoom = new Room(8, "You have found the secret room! And the rumors were true, there's a hatch, " +
             //"alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
             //"Why are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
