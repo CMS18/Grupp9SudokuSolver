@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,29 +32,29 @@ namespace AdventureGameTEst.Classes
 
         public void NameCharacter()
         {
+            player = new Player();
             Console.Write("So what is your name? ");
-            string playerName = Console.ReadLine();
-            Console.WriteLine("Welcome " + playerName + ", you have been wrongfully sentenced to death. " +
+            player.Name = Console.ReadLine();
+            Console.WriteLine("Welcome " + player.Name + ", you have been wrongfully sentenced to death. " +
                               "Your execution is in 24 hours and you've been sent\n" + "to this maximum security prison in the meantime. " +
                               "Before your sentencing, you heard a rumor that there was a \n" + "secret door that lead to an escape hatch. " +
                               "Find the door and escape before your execution date!\n");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
             Console.Clear();
-            Player player = new Player(playerName);
             
         }
 
         public void StartupItems()
         {
 
-            bucket = new Inventory("0", "Bucket", "You found a bucket.It reeks but maybe there's a use for it?", false);
+            bucket = new Inventory("0", "Bucket", "You found a bucket. It reeks but maybe there's a use for it?", false);
             bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
             //painting = new Inventory("1", "Painting", "A painting of my great idol, Adobe Gitler", false);
             //bigPlant = new Inventory("2", "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false);
             smallPlant = new Inventory("3", "Small Plant", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
             smallPlant.AddDescriptionToRoom = "There is a small plant.";
-            copperKey = new Inventory("4", "Copper Key", "A copper key. I wonder where it goes.", true);
+            copperKey = new Inventory("id1", "Copper Key", "A copper key. I wonder where it goes.", true);
             copperKey.AddDescriptionToRoom = "There is a key";
             broomStick = new Inventory ("5", "Broomstick", "You found a broomstick, might it be useful?", true);
             broomStick.AddDescriptionToRoom = "There is a broomstick leaning to the wall.";
@@ -69,7 +70,7 @@ namespace AdventureGameTEst.Classes
             Room entrance = new Room();
             entrance.AddName("Entrance");
             entrance.AddDescription("This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
-            "There are two possible exits - one to the east and one to the west. Press E or W if you want to move east or west.");
+            "\nThere are two possible exits - one to the east and one to the west. Press east or west if you want to move east or west.");
             entrance.AddItem(bucket);
             entrance.AddItem(broomStick);
 
@@ -78,17 +79,17 @@ namespace AdventureGameTEst.Classes
             southWestRoom.AddName("South West Room");
             southWestRoom.AddDescription("You are in the southwest room. It's rather stuffy in this room. I wonder why? Maybe " +
             "due to a lack of windows in the prison? I guess there's a reason for not having windows " +
-            "in a prison, though. The walls are dirty, except for the western wall, which seems " +
-            "surprisingly clean? You can exit the room to the east or to the north. Press N or E " +
+            "\nin a prison, though. The walls are dirty, except for the western wall, which seems " +
+            "surprisingly clean? You can exit the room to the east or to the north. Type north or east. " +
             "to proceed.");
 
             //Rum 3, Items: Big plant, kan ej tas med och Small plant, key Exits: N och S.
             Room eastRoom = new Room();
             eastRoom.AddName("East room");
             eastRoom.AddDescription("You are in the eastern room. There's d e f i n i t e l y blood on the eastern wall... that's " +
-            "disturbing as hell. There is a plant in the corner of the room, which is weird when " +
-            "you consider how bland and dark the rest of the prison is. You can exit the room to the " +
-            "north or to the south. Press N or S to proceed.");
+            "disturbing as hell. \nThere is a plant in the corner of the room, which is weird when " +
+            "you consider how bland and dark the rest of the \nprison is. You can exit the room to the " +
+            "west. Type west to proceed.");
             //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(smallPlant);
             eastRoom.AddItem(copperKey);
@@ -98,7 +99,7 @@ namespace AdventureGameTEst.Classes
             secretRoom.AddName("Secret Room");
             secretRoom.AddDescription("You have found the secret room! And the rumors were true, there's a hatch, " +
             "alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
-            "Why are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
+            "\nWhy are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
             "Oh well, let's press on, to freedom!");
             
             //LÄGG TILL EXITS I ROOM
@@ -106,7 +107,7 @@ namespace AdventureGameTEst.Classes
             eastRoom.AddExit(new Exit(entrance, "West"));
             entrance.AddExit(new Exit(southWestRoom, "West"));
             entrance.AddExit(new Exit(eastRoom, "East"));
-            southWestRoom.AddExit(new Exit(secretRoom, "North", true, "Door", "Here´s a door."));
+            southWestRoom.AddExit(new Exit(secretRoom, "North", true, "The Door is locked", "id1", "Door", "Here´s a door."));
 
             currentRoom = entrance;
             
@@ -114,9 +115,9 @@ namespace AdventureGameTEst.Classes
 
         public void GamePlay()
         {
+            CurrentRoom();
             do
             {
-                CurrentRoom();
                 Console.Write("");
                 string input = Console.ReadLine().ToUpper();
                 string[] inputArray = input.Split(' ');
@@ -179,23 +180,110 @@ namespace AdventureGameTEst.Classes
                 if (input.Contains(item.Name.ToUpper()))
                 {
                     if (item.IsUsable())
-                    { 
-                        Console.WriteLine($"Use {input} what? ");
-                        input = Console.ReadLine().ToUpper().Split(' ');
+                    {
+                        if (input.Length < 3)
+                        {
+                            Console.WriteLine("Use on what? ");
+                            input = Console.ReadLine().ToUpper().Split(' ');
+                        }
+                        else
+                        {
+                            input = input.Skip(1).ToArray();
+                        }
+
+                        foreach (Exit exit in exits)
+                        {
+                            if (input.Contains(exit.GetLockType().ToUpper()))
+                            {
+                                if (exit.GetId() == item.GetId())
+                                {
+                                    exit.Unlock();
+                                    Console.WriteLine("You have unlocked the door!");
+                                    player.RemoveItem(item);
+                                    return;
+                                }
+                            }
+                        }
+
+                        foreach (Inventory inventoryItem in playerInventory)
+                        {
+                            if (input.Contains(inventoryItem.Name))
+                            {
+                                if (inventoryItem.GetMatchId() == item.GetMatchId())
+                                {
+                                    player.RemoveItem(item);
+                                    player.RemoveItem((inventoryItem));
+                                    player.AddItem(copperKey);
+                                    Console.WriteLine("Wow, you found a copper key!");
+                                    return;
+                                }
+                            }
+                        }
+                    }
+
+                    else
+                        {
+                            Console.WriteLine("Can't use that");
+                        }
                     }
                 }
             }
             
+        
+
+        private void Inspect(string[] input)
+        {
+            playerInventory = player.GetInventory();
+            exits = currentRoom.GetExits();
+            if (input.Length < 1)
+            {
+                Console.WriteLine("What do you want to inspect?");
+                Console.Write("");
+                input = Console.ReadLine().Split(' ');
+            }
+
+            foreach (Inventory inventory in playerInventory)
+            {
+                if (input.Contains(inventory.Name))
+                {
+                    Console.WriteLine(inventory.Description);
+                    return; 
+                }
+            }
+
+            foreach (Exit exit in exits)
+            {
+                if (exit.GetLockType().ToUpper() == input[0])
+                {
+                    Console.WriteLine(exit.GetLockDescription());
+                    return;
+                }
+            }
+
+            Console.WriteLine("Can't do that, you dumbo.");
         }
 
-        private void Inspect(string[] v)
+        private void Go(string[] input)
         {
-            throw new NotImplementedException();
-        }
-
-        private void Go(string[] v)
-        {
-            throw new NotImplementedException();
+            exits = currentRoom.GetExits();
+            foreach (Exit exit in exits)
+            {
+                if (exit.GetDirection().ToUpper() == input[0])
+                {
+                    if (!exit.IsLocked())
+                    {
+                        currentRoom = exit.LeadsTo();
+                        CurrentRoom();
+                        return;
+                    }
+                    else if (exit.IsLocked())
+                    {
+                        Console.WriteLine(exit.GetLockDescription());
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("Can't go that way, you idiot.");
         }
 
         private void Drop(string[] input)

@@ -7,9 +7,9 @@ using AdventureGameTEst.Classes;
 
 namespace AdventureGameTEst.Classes
 {
-    public class Game 
+    public class Game
     {
-        public Player Player { get; set; }
+        Player player;
 
         public List<Room> RoomList { get; set; }
 
@@ -22,7 +22,7 @@ namespace AdventureGameTEst.Classes
             Game.Start();
             GameBuilder gameBuilder = new GameBuilder();
             gameBuilder.NameCharacter();
-            Player = gameBuilder.Player;
+            //player = gameBuilder.Player;
             gameBuilder.StartupItems();
             gameBuilder.StartupRooms();
             gameBuilder.GamePlay();

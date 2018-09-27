@@ -30,6 +30,16 @@ namespace AdventureGameTEst.Classes
         {
             return Usable;
         }
+
+        public string GetId()
+        {
+            return Id;
+        }
+
+        public string GetMatchId()
+        {
+            return MatchID;
+        }
     }
 
 

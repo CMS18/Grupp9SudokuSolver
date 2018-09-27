@@ -47,20 +47,22 @@ namespace AdventureGameTEst.Classes
             exits.Add(exit);
         }
 
-        internal List<Inventory> GetInventory()
+        public List<Inventory> GetInventory()
         {
             return roomInventory;
         }
 
-        internal void RemoveItem(Inventory item)
+        public void RemoveItem(Inventory item)
         {
             throw new NotImplementedException();
         }
 
-        internal List<Exit> GetExits()
+        public List<Exit> GetExits()
         {
             return exits;
         }
+
+
     }
 
 

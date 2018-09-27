@@ -12,7 +12,9 @@ namespace AdventureGameTEst
         Room leadsTo;
         string direction;
         private bool Locked { get; set; }
+        private string lockName;
         private string lockType;
+        private string lockId;
         public string lockDescription;
 
         public Exit(Room leadsTo, string direction)
@@ -24,8 +26,10 @@ namespace AdventureGameTEst
             lockDescription = "/NULL/";
         }
 
-        public Exit(Room leadsTo, string direction, bool locked, string lockType, string lockDescription)
+        public Exit(Room leadsTo, string direction, bool locked, string lockName, string lockId, string lockType, string lockDescription)
         {
+            this.lockName = lockName;
+            this.lockId = lockId;
             this.leadsTo = leadsTo;
             this.direction = direction;
             Locked = locked;
@@ -47,7 +51,12 @@ namespace AdventureGameTEst
         {
             return Locked;
         }
-        
+
+        public string GetLockDescription()
+        {
+            return lockDescription;
+        }
+
         public void Unlock()
         {
             Locked = false;
@@ -57,5 +66,12 @@ namespace AdventureGameTEst
         {
             return lockType;
         }
+
+        public string GetId()
+        {
+            return lockId;
+        }
+
+
     }
 }
