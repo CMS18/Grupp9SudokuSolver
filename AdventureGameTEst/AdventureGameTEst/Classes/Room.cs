@@ -13,7 +13,7 @@ namespace AdventureGameTEst.Classes
         public string Name { get; set; }
         public string Description { get; set; }
         List<Inventory> roomInventory;
-        List<Exit> exitList;
+        List<Exit> exits;
 
         private StringBuilder roomDescriptionWithItems = new StringBuilder();
 
@@ -22,7 +22,7 @@ namespace AdventureGameTEst.Classes
             Name = "";
             Description = "";
             roomInventory = new List<Inventory>();
-            exitList = new List<Exit>();
+            exits = new List<Exit>();
 
         }
 
@@ -44,12 +44,22 @@ namespace AdventureGameTEst.Classes
 
         public void AddExit(Exit exit)
         {
-            exitList.Add(exit);
+            exits.Add(exit);
         }
 
         internal List<Inventory> GetInventory()
         {
             return roomInventory;
+        }
+
+        internal void RemoveItem(Inventory item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal List<Exit> GetExits()
+        {
+            return exits;
         }
     }
 

@@ -10,19 +10,24 @@ namespace AdventureGameTEst.Classes
 {
     class GameBuilder
     {
-        public static List<Inventory> inventoryList = new List<Inventory>();
-        public static List<Room> roomList = new List<Room>();
-        public static List<Inventory> roomInventory = new List<Inventory>();
+        List<Inventory> inventoryList = new List<Inventory>();
+        List<Room> roomList = new List<Room>();
+        List<Inventory> roomInventory = new List<Inventory>();
+        List<Inventory> playerInventory = new List<Inventory>();
+        List<Exit> exits = new List<Exit>();
+
         Inventory bucket;
-        Inventory bigPlant;
+        //Inventory bigPlant;
         Inventory smallPlant;
         Inventory copperKey;
+        Inventory broomStick;
+        //Inventory painting;
 
         Room currentRoom;
 
         private bool gameIsRunning = true;
 
-        public Player Player { get; private set; }
+        Player player;
 
         public void NameCharacter()
         {
@@ -35,40 +40,27 @@ namespace AdventureGameTEst.Classes
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
             Console.Clear();
-            Player player = new Player(playerName, 24);
-
-            Player = player;
+            Player player = new Player(playerName);
+            
         }
 
         public void StartupItems()
         {
-            Inventory bucket = new Inventory(0, "Bucket", "You found a bucket.It reeks but maybe there's a use for it?", true, false);
-            bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
-            Inventory painting = new Inventory(1, "Painting", "A painting of my great idol, Adobe Gitler", false, false);
-            Inventory bigPlant = new Inventory(2, "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false, false);Inventory smallPlant = new Inventory(3, "Small Plant", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", false, false);
-            smallPlant.AddDescriptionToRoom = "There is a small plant.";
-            Inventory copperKey = new Inventory(4, "Copper Key", "A copper key. I wonder where it goes.", true, true);
-            copperKey.AddDescriptionToRoom = "There is a key";
 
-            //Inventory couch = new Inventory(5, "Couch", "The couch sits 6 people. It's beside the wall and you can see that someone has forgotten to paint the wall behind it.", false, false);
-            //Inventory table = new Inventory(6, "Table", "An ordinary wood table, can seat four people.", false, false);
-            //Inventory chairs = new Inventory(7, "Chairs", "Normal wood chairs. Could possibly be used to climb somewhere.", true, false);
-            //chairs.AddDescriptionToRoom = "There are a few chairs here.";
-            //Inventory teeth = new Inventory(8, "Teeth", "Sharp, yellow teeth.", true, false);
-            //teeth.AddDescriptionToRoom = "You're pretty sure that there's teeth on the ground.";
-            //Inventory tapestry = new Inventory(9, "Tapestry", "It shows some kind of tunnel, with many small spiders and one big spider descending on a man.", false, false);
-            //Inventory rug = new Inventory(10, "Rug", "A dirty rug with blood stains all over it.", false, false);
-            //Inventory bookShelf = new Inventory(11, "Book Shelf", "A heavy book shelf with lots of books in it. Obviously, most of them are covered in books except for Harry Potter and 50 Shades of Grey.", false, false);
-            //Inventory harryPotterBook = new Inventory(12, "Harry Potter Book", "Harry Potter and The Prisoner of Azkaban. It has been read a LOT.", true, false);
-            //harryPotterBook.AddDescriptionToRoom = "You can see a Harry Potter book.";
-            //Inventory fiftyShadesBook = new Inventory(13, "50 Shades of Grey Book", "Wow, this book is falling apart! Must be really popular.", true, false);
-            //fiftyShadesBook.AddDescriptionToRoom = "There is a book with the title \"Fifty shades of grey\"";
-            //Inventory benchPress = new Inventory(14, "Bench Press", "A normal bench press.", false, false);
-            //Inventory kettlebells = new Inventory(15, "Kettlebells", "40 pound kettlebells. A swing to the head could kill a man!", true, false);
-            //kettlebells.AddDescriptionToRoom = "Bloody kettle bells are lying on the floor.";
-            //Inventory oldRug = new Inventory(16, "Old Rug", "A really old rug.", false, false);
-            //Inventory ironKey = new Inventory(17, "Iron Key", "An iron key. I wonder where it goes.", true, true);
-            //ironKey.AddDescriptionToRoom = "There is a key.";
+            bucket = new Inventory("0", "Bucket", "You found a bucket.It reeks but maybe there's a use for it?", false);
+            bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
+            //painting = new Inventory("1", "Painting", "A painting of my great idol, Adobe Gitler", false);
+            //bigPlant = new Inventory("2", "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false);
+            smallPlant = new Inventory("3", "Small Plant", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
+            smallPlant.AddDescriptionToRoom = "There is a small plant.";
+            copperKey = new Inventory("4", "Copper Key", "A copper key. I wonder where it goes.", true);
+            copperKey.AddDescriptionToRoom = "There is a key";
+            broomStick = new Inventory ("5", "Broomstick", "You found a broomstick, might it be useful?", true);
+            broomStick.AddDescriptionToRoom = "There is a broomstick leaning to the wall.";
+            broomStick.MatchID = smallPlant.Id;
+            smallPlant.MatchID = broomStick.Id;
+
+            
         }
 
         public void StartupRooms()
@@ -78,17 +70,13 @@ namespace AdventureGameTEst.Classes
             entrance.AddName("Entrance");
             entrance.AddDescription("This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
             "There are two possible exits - one to the east and one to the west. Press E or W if you want to move east or west.");
-            entrance.AddItem(bucket);            
-
-            //Rum 1, painting, kan ej tas med. Exits: N och W.
-            //Room southEastRoom = new Room(1, "You are in the southeast room now. The walls are slightly dirtier... you think " +
-            // "you can see some blood on one of the walls. Surprisingly, there's also a painting hanging " +
-            // "suspiciously on the wall. You can exit the room to the west or to the north. Press N or W to proceed.", false);
+            entrance.AddItem(bucket);
+            entrance.AddItem(broomStick);
 
             //Rum 2, inga items. Exits: N och E
             Room southWestRoom = new Room();
             southWestRoom.AddName("South West Room");
-            southWestRoom.AddDescription("You are in the southwest room.It's rather stuffy in this room. I wonder why? Maybe " +
+            southWestRoom.AddDescription("You are in the southwest room. It's rather stuffy in this room. I wonder why? Maybe " +
             "due to a lack of windows in the prison? I guess there's a reason for not having windows " +
             "in a prison, though. The walls are dirty, except for the western wall, which seems " +
             "surprisingly clean? You can exit the room to the east or to the north. Press N or E " +
@@ -101,7 +89,7 @@ namespace AdventureGameTEst.Classes
             "disturbing as hell. There is a plant in the corner of the room, which is weird when " +
             "you consider how bland and dark the rest of the prison is. You can exit the room to the " +
             "north or to the south. Press N or S to proceed.");
-            eastRoom.AddItem(bigPlant);
+            //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(smallPlant);
             eastRoom.AddItem(copperKey);
 
@@ -121,32 +109,6 @@ namespace AdventureGameTEst.Classes
             southWestRoom.AddExit(new Exit(secretRoom, "North", true, "Door", "Here´s a door."));
 
             currentRoom = entrance;
-
-            //// Rum 4, Items: Couch, kan ej tas med. Exits: N och S
-            //Room westRoom = new Room(4, "You are in the western room. This room is slightly less stuffy. Strange? The walls are painted " +
-            //"red. Maybe they are trying to cover up some kind of fight that happened? It seems like " +
-            //"they have forgotten to paint the part behind the couch on the northern side of the room. " +
-            //"You can exit the room to the north or to the south. Press N or S to proceed.", false);
-
-            // Rum 5, Items: Teeths, chair. Table (kan ej tas med). Exits: W och S.
-            //Room northEastRoom = new Room(5, "You are in the northeastern room. There's a table in the middle of the room. " +
-            //"The walls are really bloody here... the prison guards haven't even bothered to wash the blood " +
-            //"off. You can exit the room to the " +
-            //"west or to the south. Press W or S to proceed.", false);
-
-            // Rum 6, Items: 2 böcker. Tapestry, rug och bookshelf som inte kan tas med. Exits: W och E.
-            //Room northRoom = new Room(6, "This room is surprisingly clean, considering the state of the adjacent rooms. There's " +
-            //"tapestry on the southern wall. It's slightly torn but what the hell is tapestry doing in " +
-            //"a high-security prison? There's also a rug on the floor and a book shelf with plenty of " +
-            //"books. You can exit the room to the west or to the east. Press W or E to proceed.", false);
-
-            //Rum 7, Items: Nyckel och kettlebells. Bench press och rug som inte kans tas med. Exits: S och E.
-            //Room northWestRoom = new Room(7, "Another room with bloody walls. What the hell are the prison guards doing " +
-            //", do they want the prisoners to kill each other? I would have said yes, but " +
-            //"the prison gets paid for each prisoner so maybe not. Seems like this room is meant " +
-            //"to be a gym, but there's only a bench press and some other stuff. There's a rug " +
-            //"under the bench press for some reason? You can exit the room to the south or to the east. " +
-            //"Press S or E to proceed.", false);
             
         }
 
@@ -175,7 +137,7 @@ namespace AdventureGameTEst.Classes
                 }
                 else if (inputArray[0] == "INVENTORY" || inputArray[0] == "I")
                 {
-                    Player.ShowInventory();
+                    player.ShowInventory();
                 }
                 else if (inputArray[0] == "DROP")
                 {
@@ -197,13 +159,10 @@ namespace AdventureGameTEst.Classes
                 {
                     Use(inputArray.Skip(1).ToArray());
                 }
-                else if (inputArray[0] == "H")
-                {
-                    ShowHelp();
-                }
+                
                 else
                 {
-                    Console.WriteLine("What?");
+                    Console.WriteLine("Wat?");
                     continue;
                 }
 
@@ -211,14 +170,22 @@ namespace AdventureGameTEst.Classes
 
         }
 
-        private void ShowHelp()
+        private void Use(string[] input)
         {
-            throw new NotImplementedException();
-        }
-
-        private void Use(string[] v)
-        {
-            throw new NotImplementedException();
+            playerInventory = player.GetInventory();
+            exits = currentRoom.GetExits();
+            foreach (Inventory item in playerInventory)
+            {
+                if (input.Contains(item.Name.ToUpper()))
+                {
+                    if (item.IsUsable())
+                    { 
+                        Console.WriteLine($"Use {input} what? ");
+                        input = Console.ReadLine().ToUpper().Split(' ');
+                    }
+                }
+            }
+            
         }
 
         private void Inspect(string[] v)
@@ -231,9 +198,27 @@ namespace AdventureGameTEst.Classes
             throw new NotImplementedException();
         }
 
-        private void Drop(string[] v)
+        private void Drop(string[] input)
         {
-            throw new NotImplementedException();
+            if (input.Length < 1)
+            {
+                Console.WriteLine("Drop what? ");
+                input = Console.ReadLine().ToUpper().Split(' ').ToArray();
+            }
+            playerInventory = player.GetInventory();
+
+            foreach (Inventory item in playerInventory)
+            {
+                if (item.Name == input[0])
+                {
+                    player.RemoveItem(item);
+                    currentRoom.AddItem(item);
+                    Console.WriteLine($"Dropped {item} into room.");
+                    return;
+                }
+            }
+            Console.WriteLine("Item does not exist in your inventory. ");
+            
         }
 
         private void Get(string[] input)
@@ -241,7 +226,7 @@ namespace AdventureGameTEst.Classes
             roomInventory = currentRoom.GetInventory();
             if (input.Length < 1)
             {
-                Console.WriteLine("???");
+                Console.WriteLine("Get what? ");
                 input = Console.ReadLine().ToUpper().Split(' ');
             }
 
@@ -256,7 +241,7 @@ namespace AdventureGameTEst.Classes
                     return;
                 }
             }
-            Console.WriteLine("What?");
+            Console.WriteLine("Wat?");
         }
 
         public void CurrentRoom()

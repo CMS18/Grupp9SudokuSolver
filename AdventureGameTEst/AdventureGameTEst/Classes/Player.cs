@@ -10,20 +10,46 @@ namespace AdventureGameTEst.Classes
 
     public class Player
     {
-        public int Rounds { get; set; }
+        
         public string Name { get; set; }
-        public List<Inventory> InventoryList { get; set; }
 
-        public Player(string name, int rounds)
+        List<Inventory> inventoryList = new List<Inventory>();
+
+        public Player(string name)
         {
-            Rounds = rounds;
             Name = name;
-            InventoryList = new List<Inventory>();
         }
 
-        internal void ShowInventory()
+        public void ShowInventory()
         {
-            throw new NotImplementedException();
+            if (inventoryList.Count > 0)
+            {
+                Console.WriteLine($"You have: {inventoryList} ");
+                //foreach (Inventory item in inventoryList)
+                //{
+                //    Console.WriteLine(item.Name);
+                //}
+
+            }
+            else
+            {
+                Console.WriteLine("Nothing in your inventory. ");
+            }
+        }
+
+        public void AddItem(Inventory item)
+        {
+            inventoryList.Add(item);
+        }
+
+        public void RemoveItem(Inventory item)
+        {
+            inventoryList.Remove(item);
+        }
+
+        public List<Inventory> GetInventory()
+        {
+            return inventoryList;
         }
     }
 
