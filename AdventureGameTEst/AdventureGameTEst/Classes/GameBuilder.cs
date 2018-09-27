@@ -337,14 +337,14 @@ namespace AdventureGameTEst.Classes
         {
             Console.WriteLine(currentRoom.Name);
             Console.WriteLine(currentRoom.Description);
-            if (currentRoom.GetInventory().Count > 0)
-            {
-                //Console.WriteLine("The room contains the following items: ");
-                //foreach (var item in roomInventory)
-                //{
-                //    Console.WriteLine(item);
-                //}
-            }
+            //if (currentRoom.GetInventory().Count > 0)
+            //{
+            //    //Console.WriteLine("The room contains the following items: ");
+            //    //foreach (var item in roomInventory)
+            //    //{
+            //    //    Console.WriteLine(item);
+            //    //}
+            //}
         }
     }
 

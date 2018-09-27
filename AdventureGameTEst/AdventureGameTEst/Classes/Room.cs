@@ -12,10 +12,13 @@ namespace AdventureGameTEst.Classes
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
+
+        public StringBuilder roomDescriptionWithItems = new StringBuilder();
         List<Inventory> roomInventory;
         List<Exit> exits;
 
-        private StringBuilder roomDescriptionWithItems = new StringBuilder();
+        
 
         public Room()
         {
