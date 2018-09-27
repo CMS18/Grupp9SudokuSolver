@@ -61,6 +61,18 @@ namespace AdventureGameTEst.Classes
         {
             return exits;
         }
+        public string GetDescription()
+        {
+            roomDescriptionWithItems.Clear();
+            roomDescriptionWithItems.Append(Description);
+
+            foreach (Inventory item in roomInventory)
+            {
+                roomDescriptionWithItems.Append(" " + item.AddDescriptionToRoom);
+            }
+
+            return roomDescriptionWithItems.ToString();
+        }
 
 
     }
