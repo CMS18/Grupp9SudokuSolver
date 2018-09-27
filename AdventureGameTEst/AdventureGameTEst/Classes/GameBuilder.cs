@@ -8,11 +8,19 @@ using AdventureGameTEst.Extension_Methods;
 
 namespace AdventureGameTEst.Classes
 {
-    public class GameBuilder
+    class GameBuilder
     {
-        public static List<Inventory> InventoryList = new List<Inventory>();
-        public static List<Room> RoomList = new List<Room>();
-        //Room.RoomInventory = new List<Inventory>;
+        public static List<Inventory> inventoryList = new List<Inventory>();
+        public static List<Room> roomList = new List<Room>();
+        public static List<Inventory> roomInventory = new List<Inventory>();
+        Inventory bucket;
+        Inventory bigPlant;
+        Inventory smallPlant;
+        Inventory copperKey;
+
+        Room currentRoom;
+
+        private bool gameIsRunning = true;
 
         public Player Player { get; private set; }
 
@@ -32,7 +40,7 @@ namespace AdventureGameTEst.Classes
             Player = player;
         }
 
-        public static void StartupItems()
+        public void StartupItems()
         {
             Inventory bucket = new Inventory(0, "Bucket", "You found a bucket.It reeks but maybe there's a use for it?", true, false);
             bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
@@ -41,10 +49,11 @@ namespace AdventureGameTEst.Classes
             smallPlant.AddDescriptionToRoom = "There is a small plant.";
             Inventory copperKey = new Inventory(4, "Copper Key", "A copper key. I wonder where it goes.", true, true);
             copperKey.AddDescriptionToRoom = "There is a key";
+
             //Inventory couch = new Inventory(5, "Couch", "The couch sits 6 people. It's beside the wall and you can see that someone has forgotten to paint the wall behind it.", false, false);
             //Inventory table = new Inventory(6, "Table", "An ordinary wood table, can seat four people.", false, false);
             //Inventory chairs = new Inventory(7, "Chairs", "Normal wood chairs. Could possibly be used to climb somewhere.", true, false);
-            //chairs.AddDescriptionToRoom = "There are a few chairs here.";//Oklart om det är rätt engelska???
+            //chairs.AddDescriptionToRoom = "There are a few chairs here.";
             //Inventory teeth = new Inventory(8, "Teeth", "Sharp, yellow teeth.", true, false);
             //teeth.AddDescriptionToRoom = "You're pretty sure that there's teeth on the ground.";
             //Inventory tapestry = new Inventory(9, "Tapestry", "It shows some kind of tunnel, with many small spiders and one big spider descending on a man.", false, false);
@@ -62,14 +71,14 @@ namespace AdventureGameTEst.Classes
             //ironKey.AddDescriptionToRoom = "There is a key.";
         }
 
-        public static void StartupRooms()
+        public void StartupRooms()
         {
             //Rum 0, exits: E och W, items: bucket.
             Room entrance = new Room();
             entrance.AddName("Entrance");
             entrance.AddDescription("This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
             "There are two possible exits - one to the east and one to the west. Press E or W if you want to move east or west.");
-            entrance.AddItem(bucket);
+            entrance.AddItem(bucket);            
 
             //Rum 1, painting, kan ej tas med. Exits: N och W.
             //Room southEastRoom = new Room(1, "You are in the southeast room now. The walls are slightly dirtier... you think " +
@@ -85,15 +94,33 @@ namespace AdventureGameTEst.Classes
             "surprisingly clean? You can exit the room to the east or to the north. Press N or E " +
             "to proceed.");
 
-            //Rum 3, Items: Big plant, kan ej tas med och Small plant. Exits: N och S.
+            //Rum 3, Items: Big plant, kan ej tas med och Small plant, key Exits: N och S.
             Room eastRoom = new Room();
             eastRoom.AddName("East room");
             eastRoom.AddDescription("You are in the eastern room. There's d e f i n i t e l y blood on the eastern wall... that's " +
             "disturbing as hell. There is a plant in the corner of the room, which is weird when " +
             "you consider how bland and dark the rest of the prison is. You can exit the room to the " +
             "north or to the south. Press N or S to proceed.");
-            roomInventory.Add(bigPlant);
+            eastRoom.AddItem(bigPlant);
+            eastRoom.AddItem(smallPlant);
+            eastRoom.AddItem(copperKey);
+
+            // Rum 8, Vinnande rummet! 
+            Room secretRoom = new Room();
+            secretRoom.AddName("Secret Room");
+            secretRoom.AddDescription("You have found the secret room! And the rumors were true, there's a hatch, " +
+            "alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
+            "Why are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
+            "Oh well, let's press on, to freedom!");
             
+            //LÄGG TILL EXITS I ROOM
+            southWestRoom.AddExit(new Exit(entrance, "East"));
+            eastRoom.AddExit(new Exit(entrance, "West"));
+            entrance.AddExit(new Exit(southWestRoom, "West"));
+            entrance.AddExit(new Exit(eastRoom, "East"));
+            southWestRoom.AddExit(new Exit(secretRoom, "North", true, "Door", "Here´s a door."));
+
+            currentRoom = entrance;
 
             //// Rum 4, Items: Couch, kan ej tas med. Exits: N och S
             //Room westRoom = new Room(4, "You are in the western room. This room is slightly less stuffy. Strange? The walls are painted " +
@@ -120,14 +147,123 @@ namespace AdventureGameTEst.Classes
             //"to be a gym, but there's only a bench press and some other stuff. There's a rug " +
             //"under the bench press for some reason? You can exit the room to the south or to the east. " +
             //"Press S or E to proceed.", false);
-
-            // Rum 8, Vinnande rummet! 
-            //Room secretRoom = new Room(8, "You have found the secret room! And the rumors were true, there's a hatch, " +
-            //"alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
-            //"Why are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
-            //"Oh well, let's press on, to freedom!", true);
+            
         }
 
+        public void GamePlay()
+        {
+            do
+            {
+                CurrentRoom();
+                Console.Write("");
+                string input = Console.ReadLine().ToUpper();
+                string[] inputArray = input.Split(' ');
+                
+                if (inputArray[0] == "LOOK")
+                {
+                    Console.WriteLine(currentRoom.Description);
+                    continue;
+                }
+                if (inputArray[0] == "GET" || inputArray[0] == "TAKE" || inputArray[0] == "PICK")
+                {
+                    if (inputArray[1] == "UP")
+                    {
+                        Get(inputArray.Skip(2).ToArray());
+                        continue;
+                    }
+                    Get(inputArray.Skip(1).ToArray());
+                }
+                else if (inputArray[0] == "INVENTORY" || inputArray[0] == "I")
+                {
+                    Player.ShowInventory();
+                }
+                else if (inputArray[0] == "DROP")
+                {
+                    Drop(inputArray.Skip(1).ToArray());
+                }
+                else if (inputArray[0] == "GO")
+                {
+                    Go(inputArray.Skip(1).ToArray());
+                }
+                else if (inputArray[0] == "NORTH" || inputArray[0] == "EAST" || inputArray[0] == "SOUTH" || inputArray[0] == "WEST")
+                {
+                    Go(inputArray);
+                }
+                else if (inputArray[0] == "INSPECT")
+                {
+                    Inspect(inputArray.Skip(1).ToArray());
+                }
+                else if (inputArray[0] == "USE")
+                {
+                    Use(inputArray.Skip(1).ToArray());
+                }
+                else if (inputArray[0] == "H")
+                {
+                    ShowHelp();
+                }
+                else
+                {
+                    Console.WriteLine("What?");
+                    continue;
+                }
+
+            } while (gameIsRunning);
+
+        }
+
+        private void ShowHelp()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Use(string[] v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Inspect(string[] v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Go(string[] v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Drop(string[] v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Get(string[] input)
+        {
+            roomInventory = currentRoom.GetInventory();
+            if (input.Length < 1)
+            {
+                Console.WriteLine("???");
+                input = Console.ReadLine().ToUpper().Split(' ');
+            }
+
+            foreach (Inventory item in roomInventory)
+            {
+                if (input.Contains(item.Name))
+                {
+                    Console.WriteLine("Taken.");
+                    currentRoom.RemoveItem(item);
+                    player.AddItem(item);
+
+                    return;
+                }
+            }
+            Console.WriteLine("What?");
+        }
+
+        public void CurrentRoom()
+        {
+            Console.WriteLine(currentRoom.Name);
+            Console.WriteLine(currentRoom.Description);
+        }
     }
 
 

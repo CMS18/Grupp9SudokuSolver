@@ -21,6 +21,10 @@ namespace AdventureGameTEst.Classes
             InventoryList = new List<Inventory>();
         }
 
+        internal void ShowInventory()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     

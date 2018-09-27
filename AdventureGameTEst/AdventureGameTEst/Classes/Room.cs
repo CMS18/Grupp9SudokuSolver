@@ -12,7 +12,6 @@ namespace AdventureGameTEst.Classes
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool visited = false;
         List<Inventory> roomInventory;
         List<Exit> exitList;
 
@@ -48,7 +47,10 @@ namespace AdventureGameTEst.Classes
             exitList.Add(exit);
         }
 
-
+        internal List<Inventory> GetInventory()
+        {
+            return roomInventory;
+        }
     }
 
 

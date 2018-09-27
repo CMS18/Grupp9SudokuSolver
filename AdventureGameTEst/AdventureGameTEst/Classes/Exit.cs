@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdventureGameTEst
 {
-    class Exit
+    public class Exit
     {
         Room leadsTo;
         string direction;
@@ -22,6 +22,15 @@ namespace AdventureGameTEst
             Locked = false;
             lockType = "/NULL/";
             lockDescription = "/NULL/";
+        }
+
+        public Exit(Room leadsTo, string direction, bool locked, string lockType, string lockDescription)
+        {
+            this.leadsTo = leadsTo;
+            this.direction = direction;
+            Locked = locked;
+            this.lockType = lockType;
+            this.lockDescription = lockDescription;
         }
 
         public string GetDirection()

@@ -23,14 +23,14 @@ namespace AdventureGameTEst.Classes
             GameBuilder gameBuilder = new GameBuilder();
             gameBuilder.NameCharacter();
             Player = gameBuilder.Player;
-            GameBuilder.StartupItems(); 
-            
+            gameBuilder.StartupItems();
+            gameBuilder.StartupRooms();
+            gameBuilder.GamePlay();
         }
 
         public static void Start()
         {
-            Console.WriteLine("Welcome to the Haglund Prison Escape!");
-            
+            Console.WriteLine("Welcome to the Haglund Prison Escape!");  
         }
 
         
