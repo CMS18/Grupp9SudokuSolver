@@ -51,7 +51,7 @@ namespace AdventureGameTEst.Classes
             plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
             plant.AddDescriptionToRoom = "There is a small plant.";
             key = new Inventory("id1", "KEY", "A copper key. I wonder where it goes.", true);
-            //key.AddDescriptionToRoom = "There is a key";
+            key.AddDescriptionToRoom = "There is a key.";
             shovel = new Inventory ("5", "SHOVEL", "You found a shovel, might it be useful?", true);
             shovel.AddDescriptionToRoom = "There is a shovel leaning to the wall.";
             shovel.MatchID = plant.Id;
@@ -91,7 +91,7 @@ namespace AdventureGameTEst.Classes
             "west. Type west to proceed.");
             //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(plant);
-            eastRoom.AddItem(key);
+            //eastRoom.AddItem(key);
             roomList.Add(eastRoom);
 
             // Rum 8, Vinnande rummet! 
