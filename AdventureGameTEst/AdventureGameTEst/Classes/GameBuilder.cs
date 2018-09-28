@@ -25,6 +25,7 @@ namespace AdventureGameTEst.Classes
         //Inventory painting;
 
         Room currentRoom;
+        
 
         private bool gameIsRunning = true;
 
@@ -73,6 +74,7 @@ namespace AdventureGameTEst.Classes
             "\nThere are two possible exits - one to the east and one to the west. Press east or west if you want to move east or west.");
             entrance.AddItem(bucket);
             entrance.AddItem(broomStick);
+            roomList.Add(entrance);
 
 
             //Rum 2, inga items. Exits: N och E
@@ -83,6 +85,7 @@ namespace AdventureGameTEst.Classes
             "\nin a prison, though. The walls are dirty, except for the western wall, which seems " +
             "surprisingly clean? You can exit the room to the east or to the north. Type north or east. " +
             "to proceed.");
+            roomList.Add(southWestRoom);
 
             //Rum 3, Items: Big plant, kan ej tas med och Small plant, key Exits: N och S.
             Room eastRoom = new Room();
@@ -94,6 +97,7 @@ namespace AdventureGameTEst.Classes
             //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(plant);
             eastRoom.AddItem(copperKey);
+            roomList.Add(eastRoom);
 
             // Rum 8, Vinnande rummet! 
             Room secretRoom = new Room();
@@ -102,6 +106,7 @@ namespace AdventureGameTEst.Classes
             "alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
             "\nWhy are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
             "Oh well, let's press on, to freedom!");
+            roomList.Add(secretRoom);
             
             //LÄGG TILL EXITS I ROOM
             southWestRoom.AddExit(new Exit(entrance, "East"));
@@ -302,7 +307,7 @@ namespace AdventureGameTEst.Classes
                 {
                     player.RemoveItem(item);
                     currentRoom.AddItem(item);
-                    Console.WriteLine($"Dropped {item} into room.");
+                    Console.WriteLine($"Dropped {item.Name.ToLower()} into room.");
                     return;
                 }
             }
@@ -337,6 +342,14 @@ namespace AdventureGameTEst.Classes
         {
             Console.WriteLine(currentRoom.Name);
             Console.WriteLine(currentRoom.Description);
+
+            
+            if (currentRoom.Name == "Secret Room")
+            {
+                gameIsRunning = false;
+            }
+           
+           
             if (currentRoom.GetInventory().Count > 0)
             {
                 //Console.WriteLine("The room contains the following items: ");

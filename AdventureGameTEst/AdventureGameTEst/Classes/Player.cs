@@ -20,11 +20,11 @@ namespace AdventureGameTEst.Classes
         {
             if (inventoryList.Count > 0)
             {
-                Console.WriteLine($"You have: {inventoryList} ");
-                //foreach (Inventory item in inventoryList)
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
+                Console.WriteLine($"You have: ");
+                foreach (Inventory item in inventoryList)
+                {
+                    Console.WriteLine(item.Name);
+                }
 
             }
             else
