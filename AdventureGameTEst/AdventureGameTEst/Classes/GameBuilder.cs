@@ -125,6 +125,7 @@ namespace AdventureGameTEst.Classes
                 Console.Write("");
                 string input = Console.ReadLine().ToUpper();
                 string[] inputArray = input.Split(' ');
+                Console.WriteLine();
 
                 if (inputArray[0] == "LOOK")
                 {
@@ -174,7 +175,7 @@ namespace AdventureGameTEst.Classes
                     Console.WriteLine("Wat?");
                     continue;
                 }
-
+                
             } while (gameIsRunning);
 
         }
@@ -242,6 +243,7 @@ namespace AdventureGameTEst.Classes
         private void Inspect(string[] input)
         {
             playerInventory = player.GetInventory();
+            roomInventory = currentRoom.GetInventory();
             exits = currentRoom.GetExits();
             if (input.Length < 1)
             {
@@ -256,6 +258,14 @@ namespace AdventureGameTEst.Classes
                 {
                     Console.WriteLine(inventory.Description);
                     return; 
+                }
+            }
+            foreach (Inventory inventory in roomInventory)
+            {
+                if (input.Contains(inventory.Name.ToUpper()))
+                {
+                    Console.WriteLine(inventory.Description);
+                    return;
                 }
             }
 
