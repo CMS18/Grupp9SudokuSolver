@@ -56,7 +56,7 @@ namespace AdventureGameTEst.Classes
             plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
             plant.AddDescriptionToRoom = "There is a small plant.";
             copperKey = new Inventory("id1", "COPPERKEY", "A copper key. I wonder where it goes.", true);
-            copperKey.AddDescriptionToRoom = "There is a key";
+            //copperKey.AddDescriptionToRoom = "There is a key";
             broomStick = new Inventory ("5", "BROOMSTICK", "You found a broomstick, might it be useful?", true);
             broomStick.AddDescriptionToRoom = "There is a broomstick leaning to the wall.";
             broomStick.MatchID = plant.Id;
@@ -130,7 +130,7 @@ namespace AdventureGameTEst.Classes
                 
                 if (inputArray[0] == "LOOK")
                 {
-                    Console.WriteLine(currentRoom.Description);
+                    Console.WriteLine(currentRoom.GetDescription());
                     continue;
                 }
                 if (inputArray[0] == "GET" || inputArray[0] == "TAKE" || inputArray[0] == "PICK")
@@ -341,23 +341,18 @@ namespace AdventureGameTEst.Classes
         public void CurrentRoom()
         {
             Console.WriteLine(currentRoom.Name);
-            Console.WriteLine(currentRoom.Description);
+            //Console.WriteLine(currentRoom.Description);
+            Console.WriteLine(currentRoom.GetDescription());
 
-            
+
+
             if (currentRoom.Name == "Secret Room")
             {
                 gameIsRunning = false;
             }
            
            
-            if (currentRoom.GetInventory().Count > 0)
-            {
-                //Console.WriteLine("The room contains the following items: ");
-                //foreach (var item in roomInventory)
-                //{
-                //    Console.WriteLine(item);
-                //}
-            }
+            
         }
     }
 
