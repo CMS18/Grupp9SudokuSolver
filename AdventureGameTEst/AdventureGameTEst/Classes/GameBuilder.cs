@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventureGameTEst.Classes;
-using AdventureGameTEst.Extension_Methods;
 
 namespace AdventureGameTEst.Classes
 {
@@ -20,8 +15,8 @@ namespace AdventureGameTEst.Classes
         Inventory bucket;
         //Inventory bigPlant;
         Inventory plant;
-        Inventory copperKey;
-        Inventory broomStick;
+        Inventory key;
+        Inventory shovel;
         //Inventory painting;
 
         Room currentRoom;
@@ -55,12 +50,12 @@ namespace AdventureGameTEst.Classes
             //bigPlant = new Inventory("2", "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false);
             plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
             plant.AddDescriptionToRoom = "There is a small plant.";
-            copperKey = new Inventory("id1", "COPPERKEY", "A copper key. I wonder where it goes.", true);
-            //copperKey.AddDescriptionToRoom = "There is a key";
-            broomStick = new Inventory ("5", "BROOMSTICK", "You found a broomstick, might it be useful?", true);
-            broomStick.AddDescriptionToRoom = "There is a broomstick leaning to the wall.";
-            broomStick.MatchID = plant.Id;
-            plant.MatchID = broomStick.Id;
+            key = new Inventory("id1", "KEY", "A copper key. I wonder where it goes.", true);
+            //key.AddDescriptionToRoom = "There is a key";
+            shovel = new Inventory ("5", "SHOVEL", "You found a shovel, might it be useful?", true);
+            shovel.AddDescriptionToRoom = "There is a shovel leaning to the wall.";
+            shovel.MatchID = plant.Id;
+            plant.MatchID = shovel.Id;
 
             
         }
@@ -71,9 +66,9 @@ namespace AdventureGameTEst.Classes
             Room entrance = new Room();
             entrance.AddName("Entrance");
             entrance.AddDescription("This is the prison entrance. The walls are made of indestructible concrete but they are fairly clean. " +
-            "\nThere are two possible exits - one to the east and one to the west. Press east or west if you want to move east or west.");
+            "\nThere are two possible exits - one to the east and one to the west. Type east or west if you want to move east or west.");
             entrance.AddItem(bucket);
-            entrance.AddItem(broomStick);
+            entrance.AddItem(shovel);
             roomList.Add(entrance);
 
 
@@ -96,7 +91,7 @@ namespace AdventureGameTEst.Classes
             "west. Type west to proceed.");
             //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(plant);
-            eastRoom.AddItem(copperKey);
+            eastRoom.AddItem(key);
             roomList.Add(eastRoom);
 
             // Rum 8, Vinnande rummet! 
@@ -219,7 +214,7 @@ namespace AdventureGameTEst.Classes
                                 {
                                     player.RemoveItem(item);
                                     player.RemoveItem((inventoryItem));
-                                    player.AddItem(copperKey);
+                                    player.AddItem(key);
                                     Console.WriteLine("Wow, you found a copper key!");
                                     return;
                                 }
