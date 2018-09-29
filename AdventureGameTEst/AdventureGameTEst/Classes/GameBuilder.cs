@@ -11,6 +11,7 @@ namespace AdventureGameTEst.Classes
         List<Inventory> roomInventory = new List<Inventory>();
         List<Inventory> playerInventory = new List<Inventory>();
         List<Exit> exits = new List<Exit>();
+        public int rounds;
 
         Inventory bucket;
         //Inventory bigPlant;
@@ -116,7 +117,8 @@ namespace AdventureGameTEst.Classes
                 " The scratchings and clawings around the keyhole \n suggests that you might need a key for it...?"));
 
             currentRoom = entrance;
-            
+            rounds = 0;
+
         }
 
         public void GamePlay()
@@ -292,10 +294,21 @@ namespace AdventureGameTEst.Classes
                 {
                     if (!exit.IsLocked())
                     {
-                        Console.Clear();
-                        currentRoom = exit.LeadsTo();
-                        CurrentRoom();
-                        return;
+                        
+                        rounds++;
+                        if (rounds == 24)
+                        {
+                            Console.WriteLine("24 hours have passed and it's time for your execution...");
+                            gameIsRunning = false;
+                            break;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            currentRoom = exit.LeadsTo();
+                            CurrentRoom();
+                            return;
+                        }
                     }
                     else if (exit.IsLocked())
                     {
@@ -355,8 +368,9 @@ namespace AdventureGameTEst.Classes
 
         public void CurrentRoom()
         {
+            Console.WriteLine($"Hours left = {24 - rounds}.... ");
+            Console.WriteLine("");
             Console.WriteLine(currentRoom.Name);
-            //Console.WriteLine(currentRoom.Description);
             Console.WriteLine(currentRoom.GetDescription());
 
 
