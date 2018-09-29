@@ -44,16 +44,18 @@ namespace AdventureGameTEst.Classes
         public void StartupItems()
         {
 
-            bucket = new Inventory("0", "BUCKET", "You found a bucket. It reeks but maybe there's a use for it?", false);
+            bucket = new Inventory("0", "BUCKET", "A most common bucket. It reeks but maybe there's a use for it?", false);
             bucket.AddDescriptionToRoom = "In the corner of the room, you see a bucket.";
-            painting = new Inventory("1", "PAINTING", "A painting of Haglund's great idol, Adobe Gitler", false);
+            painting = new Inventory("1", "PAINTING", "A painting of the dreaded Adobe Gitler. You shudder at the sight of it...", false);
             painting.AddDescriptionToRoom = "A perfectly centered painting hangs on the western wall.";
             //bigPlant = new Inventory("2", "Big Plant", "This plant is almost as big as me. It sits in a white flower pot. How does it grow so much when there's no sunlight here?", false);
-            plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison.", true);
-            plant.AddDescriptionToRoom = "There is a small plant.";
+            plant = new Inventory("3", "PLANT", "This plant is about a foot tall, but it has spiky vines. Seems pretty fitting for a prison. " +
+                "You can't help but noticing that the plant is slightly tilted in its pot...?", true);
+            plant.AddDescriptionToRoom = "There is a small plant in the corner of the room." +
+                "\n Weird given the state of the rest of this godforsaken place...";
             key = new Inventory("id1", "KEY", "A copper key. I wonder where it goes.", true);
             key.AddDescriptionToRoom = "There is a key.";
-            shovel = new Inventory ("5", "SHOVEL", "You found a shovel, might it be useful?", true);
+            shovel = new Inventory ("5", "SHOVEL", "Dare I even think about what a shovel might be doing in here? Anyway, might it be useful?", true);
             shovel.AddDescriptionToRoom = "There is a shovel leaning to the wall.";
 
             shovel.MatchID = plant.Id;
@@ -79,7 +81,7 @@ namespace AdventureGameTEst.Classes
             southWestRoom.AddName("South West Room");
             southWestRoom.AddDescription("You are in the southwest room. It's rather stuffy in this room. I wonder why? \n Maybe " +
             "due to a lack of windows in the prison? \n I guess there's a reason for not having windows " +
-            "in a prison, though. The walls are dirty, except for the western wall...? " +
+            "in a prison, though. The walls are dirty, except for the western wall. " +
             "You can exit the room to the east or to the north. Type north or east. " +
             "to proceed.");
             southWestRoom.AddItem(painting);
@@ -89,8 +91,7 @@ namespace AdventureGameTEst.Classes
             Room eastRoom = new Room();
             eastRoom.AddName("East room");
             eastRoom.AddDescription("You are in the eastern room. There's d e f i n i t e l y blood on the eastern wall... that's " +
-            "disturbing as hell. \nThere is a plant in the corner of the room, which is weird when " +
-            "you consider how bland and dark the rest of the \nprison is. You can exit the room to the " +
+            "disturbing as hell. You can exit the room to the " +
             "west. Type west to proceed.");
             //eastRoom.AddItem(bigPlant);
             eastRoom.AddItem(plant);
@@ -103,7 +104,7 @@ namespace AdventureGameTEst.Classes
             secretRoom.AddDescription("You have found the secret room! And the rumors were true, there's a hatch, " +
             "alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
             "\nWhy are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
-            "Oh well, let's press on, to freedom!");
+            "\nOh well, let's press on, to freedom!");
             roomList.Add(secretRoom);
             
             //LÄGG TILL EXITS I ROOM
@@ -111,7 +112,8 @@ namespace AdventureGameTEst.Classes
             eastRoom.AddExit(new Exit(entrance, "West"));
             entrance.AddExit(new Exit(southWestRoom, "West"));
             entrance.AddExit(new Exit(eastRoom, "East"));
-            southWestRoom.AddExit(new Exit(secretRoom, "North", true, "The Door is locked", "id1", "Door", "Here´s a door. It seems to be locked."));
+            southWestRoom.AddExit(new Exit(secretRoom, "North", true, "The Door is locked", "id1", "Door", "Here´s a door. It seems to be locked." +
+                " The scratchings and clawings around the keyhole \n suggests that you might need a key for it...?"));
 
             currentRoom = entrance;
             
