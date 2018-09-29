@@ -84,7 +84,7 @@ namespace AdventureGameTEst.Classes
             "due to a lack of windows in the prison? \n I guess there's a reason for not having windows " +
             "in a prison, though. The walls are dirty, except for the western wall. " +
             "You can exit the room to the east or to the north. Type north or east. " +
-            "to proceed.");
+            "to proceed. \n");
             southWestRoom.AddItem(painting);
             roomList.Add(southWestRoom);
 
@@ -300,7 +300,7 @@ namespace AdventureGameTEst.Classes
                         {
                             Console.WriteLine("24 hours have passed and it's time for your execution...");
                             gameIsRunning = false;
-                            break;
+                            return;
                         }
                         else
                         {
