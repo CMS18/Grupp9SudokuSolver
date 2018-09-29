@@ -292,6 +292,7 @@ namespace AdventureGameTEst.Classes
                 {
                     if (!exit.IsLocked())
                     {
+                        Console.Clear();
                         currentRoom = exit.LeadsTo();
                         CurrentRoom();
                         return;
