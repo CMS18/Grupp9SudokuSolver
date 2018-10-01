@@ -105,7 +105,9 @@ namespace AdventureGameTEst.Classes
             secretRoom.AddDescription("You have found the secret room! And the rumors were true, there's a hatch, " +
             "alright! Let's climb through and escape this godforsaken prison! It leads to a tunnel. " +
             "\nWhy are there skeletons spread around this tunnel? And what's up with these nasty spiders? " +
-            "\nOh well, let's press on, to freedom!");
+            "\nOh well, let's press on, to freedom..................................................\n" +
+            "Suddenly Vampire Adobe Gitler drops down from the cave ceiling! He grabs you and whispers: Fredrik told me \n" +
+            "to tell you that you can't escape from the C# class, I mean the prison!");
             roomList.Add(secretRoom);
             
             //LÄGG TILL EXITS I ROOM
