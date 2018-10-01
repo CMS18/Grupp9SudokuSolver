@@ -203,7 +203,7 @@ namespace AdventureGameTEst.Classes
                         }
                         else
                         {
-                            input = input.Skip(1).ToArray();
+                            input = input.Skip(0).ToArray();
                         }
 
                         foreach (Exit exit in exits)
@@ -238,7 +238,8 @@ namespace AdventureGameTEst.Classes
 
                     else
                         {
-                            Console.WriteLine("Can't use that");
+                            Console.WriteLine("Can't use that.");
+                            return;
                         }
                     }
                 }
