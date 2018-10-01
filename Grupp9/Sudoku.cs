@@ -16,17 +16,26 @@ namespace Grupp9
             // TODO: Put string in board
             //  Gå igenom varje tecken i strängen.
 
-            for (int i = 0; i < 9 * 9; i++)
+            if (board.Length < 81)
             {
-                //   Gör om tecken till siffra.
-                int number = int.Parse(board[i].ToString());
-                //    Räkna ut rad och kolumn.
-                int row = i / 9;
-                int col = i % 9;
-                //     Skriva in siffra i cell.
-                SetCellValue(row, col, number);
+                Console.WriteLine("Brädet innehåller felaktigt antal siffror.");
+                return;
             }
 
+            else
+            {
+                
+                for (int i = 0; i < 9 * 9; i++)
+                {
+                    //   Gör om tecken till siffra.
+                    int number = int.Parse(board[i].ToString());
+                    //    Räkna ut rad och kolumn.
+                    int row = i / 9;
+                    int col = i % 9;
+                    //     Skriva in siffra i cell.
+                    SetCellValue(row, col, number);
+                }
+            }
         }
 
         private int GetCellValue(int row, int col)
@@ -223,6 +232,7 @@ namespace Grupp9
             if (!TryNumbers() && tries == 150)
             {
                 Console.WriteLine("Spelet saknar lösning.");
+                Console.WriteLine("Såhär långt kom jag:");
                 PrintBoard();
             }
         }
