@@ -222,15 +222,19 @@ namespace AdventureGameTEst.Classes
 
                         foreach (Inventory inventoryItem in playerInventory)
                         {
-                            if (input.Contains(inventoryItem.Name))
+                            if (inventoryItem.IsUsable())
                             {
-                                if (inventoryItem.GetMatchId() == item.GetMatchId())
+
+                                if (input.Contains(inventoryItem.Name))
                                 {
-                                    player.RemoveItem(item);
-                                    player.RemoveItem((inventoryItem));
-                                    player.AddItem(key);
-                                    Console.WriteLine("Wow, you found a copper key!");
-                                    return;
+                                    if (inventoryItem.GetMatchId() == item.GetMatchId())
+                                    {
+                                        player.RemoveItem(item);
+                                        player.RemoveItem((inventoryItem));
+                                        player.AddItem(key);
+                                        Console.WriteLine("Wow, you found a copper key!");
+                                        return;
+                                    }
                                 }
                             }
                         }
