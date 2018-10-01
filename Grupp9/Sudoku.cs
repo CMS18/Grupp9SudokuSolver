@@ -204,7 +204,7 @@ namespace Grupp9
             Console.WriteLine("Tryck enter för att lösa. ");
             Console.ReadLine();
             int tries = 0;
-            bool sudoku = true;
+            //bool sudoku = true;
             do
             {
                 for (int row = 0; row < 9; row++)
