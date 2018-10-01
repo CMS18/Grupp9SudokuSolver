@@ -203,7 +203,7 @@ namespace AdventureGameTEst.Classes
                         }
                         else
                         {
-                            input = input.Skip(0).ToArray();
+                            input = input.Skip(1).ToArray();
                         }
 
                         foreach (Exit exit in exits)
